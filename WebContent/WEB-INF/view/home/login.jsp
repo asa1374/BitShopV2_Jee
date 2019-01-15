@@ -16,10 +16,10 @@
 	<table id="login-outer-tab">
 		<tr>
 			<td colspan="5">
-				<form id="login-form" action="member.do">
+				<form id="login-form">
 					<table id="login-inner-tab">
 						<tr>
-							<td><input id="userid-input" name="id" 
+							<td><input id="id" name="id" 
 									type="text" placeholder="ID" tabindex="1"/>
 							</td>
 							<td rowspan="2">
@@ -27,7 +27,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><input id="password-input" name="pass" 
+							<td><input id="pass" name="pass" 
 									type="password" placeholder="PASSWORD" tabindex="2"/>
 									<input type="hidden" name="cmd" value="login" />
 									<input type="hidden" name="dir" value="home" />
@@ -45,15 +45,30 @@
 </section>
 </div>
 <script>
+	var submit = document.getElementById("login-btn");
+	submit.addEventListener('click',function(){
+		var id = document.getElementById('id');
+		var pass = document.getElementById('pass');
+		
+		if(id.value==="" && pass.value===""){
+			alert('아이디 값이 없다.');
+		}else{
+			alert('아이디 값이 있다');
+			var form = document.getElementById("login-form");
+			form.action = "member.do";
+			form.method = "post";
+			form.submit();
+		}
+	});
+
 //location.assign('member.do?dest=join-form');
 /* onload = function(){
 	location.assign('member.do?dest=join-form');
 } */
-/* document.getElementById('join-link')
-	.addEventListner('click',function (){ // 어나니머스 함수 콜백 함수
-		alert('회원가입클릭 !!');
+ document.getElementById("join-link")
+	.addEventListener('click',function (){ // 어나니머스 함수 콜백 함수  
 		location.assign('member.do?dest=join-form');
-	});  */
+	});  
 	// move 이면 클릭이벤트 리스닝되고,
 	// move() 이면 즉시 실행됨
 </script>
